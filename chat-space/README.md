@@ -47,6 +47,7 @@
 |------|----|-------|
 |id|integer|nul: false, unique: ture|
 |text|string|nul: false|
+|image|string||
 |user_id|integer|unl: false, forgin_key|
 |group_id|integer|nul: false, forgin_key|
 
