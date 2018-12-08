@@ -2,15 +2,13 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|nul: false,unique: ture|
 |name|string|nul: false,unique: ture|
 |email|string|nul: false,unique: ture|
-|password|string|nul: false,unique: ture|
 
 ### association
 - has_many :group, through: :members
 - has_many :members
-- has_many :comments
+- has_many :messages
 
 
 
@@ -18,13 +16,12 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|nul: false,unique: ture|
 |name|string|nul: false|
 
 ### association
-- has_many :user, through: :members
+- has_many :users, through: :members
 - has_many :members
-- has_many :comments
+- has_many :messages
 
 
 
@@ -32,8 +29,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -41,15 +38,14 @@
 
 
 
-## commentsテーブル
+## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|nul: false, unique: ture|
 |text|string|nul: false|
 |image|string||
-|user_id|integer|unl: false, forgin_key|
-|group_id|integer|nul: false, forgin_key|
+|user_id|references|unl: false, forgin_key|
+|group_id|references|nul: false, forgin_key|
 
 ### Association
 - belongs_to :user
