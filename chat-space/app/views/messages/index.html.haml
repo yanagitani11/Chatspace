@@ -1,0 +1,36 @@
+
+.list
+  .list-user
+    .list-user__name
+      %p sample name
+    .list-user__option
+      %i.fa.fa-pencil-square-o.fa-fw
+      %i.fa.fa-cog.fa-fw
+  .list-group
+    .list-group__name
+      %p sample group
+    .list-group__messages
+      %p sample group
+.chat
+  .chat-group
+    .chat-group__edit
+      %p Edit
+    .chat-group__hedder
+      .chat-group__hedder-title
+        %p d
+      .chat-group__hedder-members
+        %p sample name
+  .chat-main
+    .chat-main__contents
+      .chat-main__contents__user
+        %p sample name
+      .chat-main__contents__time
+        %p 2018/1/1
+      .chat-main__contents__message
+        %p hallo
+  .chat-fotter
+    %input.chat-fotter__message{type: 'text', placeholder: 'type a message'}
+      %label.chat-fotter__chat-file{for: "upload-icon"}
+        %i.fa.fa-image
+        %input.image{type:"file",id: "upload-icon"}
+    %input.submit{type: 'submit', value: 'Send'}
