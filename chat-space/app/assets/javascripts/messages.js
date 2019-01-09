@@ -19,3 +19,9 @@ $(function() {
                 </div>`
 	return html;
 	}
+	  function clearBox(html){
+    	$('.messages').append(html)
+    	$('.form__message').val('')
+    	$('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
+  	}
+
