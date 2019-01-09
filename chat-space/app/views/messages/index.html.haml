@@ -1,36 +1,19 @@
-
-.list
-  .list-user
-    .list-user__name
-      %p sample name
-    .list-user__option
-      %i.fa.fa-pencil-square-o.fa-fw
-      %i.fa.fa-cog.fa-fw
-  .list-group
-    .list-group__name
-      %p sample group
-    .list-group__messages
-      %p sample group
+= render "shared/side_ber"
 .chat
-  .chat-group
-    .chat-group__edit
-      %p Edit
-    .chat-group__hedder
-      .chat-group__hedder-title
-        %p d
-      .chat-group__hedder-members
-        %p sample name
-  .chat-main
-    .chat-main__contents
-      .chat-main__contents__user
-        %p sample name
-      .chat-main__contents__time
-        %p 2018/1/1
-      .chat-main__contents__message
-        %p hallo
-  .chat-fotter
-    %input.chat-fotter__message{type: 'text', placeholder: 'type a message'}
-      %label.chat-fotter__chat-file{for: "upload-icon"}
-        %i.fa.fa-image
-        %input.image{type:"file",id: "upload-icon"}
-    %input.submit{type: 'submit', value: 'Send'}
+  .header
+    .left-header
+      .left-header__title
+        = @group.name
+      .left-header__members
+        - @group_user.each do |user|
+          = p user
+  .messages
+    = render @messages
+  .form
+    = form_for [@group, @message], remote:true do |f|
+      = f.text_field :content, class: "form__message", placeholder: "type a message",id:"form" 
+      .form__mask
+        = f.label :image, class: "form__mask__image" do
+          = fa_icon "picture-o", class: "icon"
+          = f.file_field :image, class: "hidden"
+      = f.submit "Send", class: "form__submit"
