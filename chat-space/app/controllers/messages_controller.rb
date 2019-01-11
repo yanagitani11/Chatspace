@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
         format.html
         format.json
       end
-    else @message.nill?
+    elsif @message.nill?
     end
   end
 
