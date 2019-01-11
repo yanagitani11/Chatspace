@@ -1,7 +1,5 @@
 $(function() {
 	$('.messages').scrollTop($('.messages')[0].scrollHeight);
-});
-$(function() {
 	function buildHTML(message){
     var image = message.image ? `<img src="${message.image}" class="chat-main__message-body"> ` : "" ;
     var html = `<div class="message">
