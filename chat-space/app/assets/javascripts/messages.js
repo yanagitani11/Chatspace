@@ -37,11 +37,11 @@ $(function() {
 			contentType: false
 		})
 		.done(function(data){
-      		var html = buildHTML(data);
-      		clearBox(html);
+      	　　var html = buildHTML(data);
+      	　　clearBox(html);
 		})
 		.fail(function(){
-			alert("errorr");
+		　　alert("errorr");
 		})
 	});
 });
