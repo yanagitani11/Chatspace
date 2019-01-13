@@ -34,7 +34,6 @@ $(function() {
 			data: formData,
 			dataType: 'json',
 			processData: false,
-			disabled: false,
 			contentType: false
 		})
 		.done(function(data){
@@ -43,6 +42,6 @@ $(function() {
 		})
 		.fail(function(){
 			alert("errorr");
-		});
+		})
 	});
 });
