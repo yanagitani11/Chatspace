@@ -1,13 +1,13 @@
 $(function() {
-	var Adduser_list = $("#user-search-result");
-	var users_list = $(".chat-group-user")
+	var adduserList = $("#user-search-result");
+	var usersList = $(".chat-group-user")
 
     function appendUser(user){
       var html =  `<div class="chat-group-user clearfix">
                     <p class="chat-group-user__name">${user.name}</p>
                     <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</a>
                   </div>`
-      Adduser_list.append(html);
+      adduserList.append(html);
     };
 
     function appendAddUser(userId, userName){
@@ -16,14 +16,14 @@ $(function() {
                     <p class='chat-group-user__name'>${ userName }</p>
                     <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
                   </div>`
-      users_list.append(html);
+      usersList.append(html);
     };
 
     function appendNoUser(user){
       var html = `<div class="chat-group-user clearfix">
                     <p class="chat-group-user__name">${user}</p>
                   </div>`
-      Adduser_list.append(html);
+      adduserList.append(html);
     }
 
     $(document).on('click', '.user-search-add', function(){
@@ -44,19 +44,19 @@ $(function() {
 			data: { keyword: input},
 			dataType: 'json'
 		})
-      .done(function(users){
-        $("#user-search-result").empty();
-        if (users.length !== 0) {
-          users.forEach(function(user){
-            appendUser(user);
-          });
-        }
-        else {
-          appendNoUser("一致するユーザーはいません");
-        }
-      })
-      .fail(function(){
-        alert('ユーザー検索に失敗しました')
-      })
+    .done(function(users){
+      $("#user-search-result").empty();
+      if (users.length !== 0) {
+        users.forEach(function(user){
+          appendUser(user);
+         });
+      }
+       else {
+        appendNoUser("一致するユーザーはいません");
+      }
+    })
+    .fail(function(){
+      alert('ユーザー検索に失敗しました')
+    })
 	});
 });
