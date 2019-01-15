@@ -7,6 +7,9 @@
       .left-header__members
         - @group_user.each do |user|
           = p user
+    .right-header
+      .right-header__button
+        = link_to "Edit",edit_group_path(@group)
   .messages
     = render @messages
   .form
