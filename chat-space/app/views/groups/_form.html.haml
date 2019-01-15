@@ -21,7 +21,8 @@
       %label.chat-group-form__label{:for => "chat_group_チャットメンバー"} チャットメンバー
     .chat-group-form__field--right
       .chat-group-user
-        = current_user.name
+        - @group.users.each do |users|
+          = users.name
         .chat-group-user__name
     .chat-group-form__field--right
   .chat-group-form__field.clearfix
