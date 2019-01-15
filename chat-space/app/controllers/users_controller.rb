@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   def index
     @users = User.where("name LIKE ? AND name NOT LIKE ? ", "%#{params[:keyword]}%","%#{current_user.name}%")
     respond_to do |format|
-      format.html
       format.json
     end
   end
