@@ -49,22 +49,25 @@ $(function() {
 	  setInterval(update, 5000);
 	});
 	  function update(){
-		var id = $(".message").last().data("message-id");
-		var url = $("#new_message").attr("action");
-		$.ajax({
-		  type: "GET",
-		  url: url,
-		  data: {id: id},
-		  dataType: "json"
-		})
-		.done(function(data){
-		  data.forEach(function(message) {
-			var html = buildHTML(data);
-			clearBox(html);
+	  	if (window.location.href.match(/\/groups\/\d+\/messages/)){
+		  var id = $(".message").last().data("message-id");
+		  $.ajax({
+		    type: "GET",
+		    url: location.href,
+		    data: {id: id},
+		    dataType: "json"
 		  })
-		})
-		.fail(function(){
-		  alert("error");
-		})
-	  }
+		  .done(function(data){
+		    data.forEach(function(message) {
+		  	  var html = buildHTML(data);
+			  clearBox(html);
+		    })
+		  })
+		  .fail(function(){
+		    alert("error");
+		  })  
+		} else {
+		  setInterval(update, 5000)
+		}
+	  };
 });
