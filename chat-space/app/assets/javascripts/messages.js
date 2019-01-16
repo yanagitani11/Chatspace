@@ -36,13 +36,13 @@ $(function() {
 		processData: false,
 		contentType: false
 	  })
-		.done(function(data){
-      	  var html = buildHTML(data);
-      	  clearBox(html);
-		})
-		.fail(function(){
-		  alert("errorr");
-		})
+	  .done(function(data){
+      	var html = buildHTML(data);
+      	clearBox(html);
+	  })
+	  .fail(function(){
+		alert("errorr");
+      })
 	});
 
 	$(function(){
@@ -50,9 +50,10 @@ $(function() {
 	});
 	  function update(){
 		var id = $(".message").last().data("message-id");
+		var url = $("#new_message").attr("action");
 		$.ajax({
 		  type: "GET",
-		  url: location.href,
+		  url: url,
 		  data: {id: id},
 		  dataType: "json"
 		})
