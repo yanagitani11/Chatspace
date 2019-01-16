@@ -2,7 +2,7 @@ $(function() {
 	$('.messages').scrollTop($('.messages')[0].scrollHeight);
 	function buildHTML(message){
     var image = message.image ? `<img src="${message.image}" class="chat-main__message-body"> ` : "" ;
-    var html = `<div class="message">
+    var html = `<div class="message" data-message-id="${ message.id }>
     			  <div class="upper-message">
                     <div class="upper-message__user-name">
                       ${message.name}
@@ -27,7 +27,7 @@ $(function() {
 	$('#new_message').on('submit',function(e){
 		e.preventDefault();
 		var formData = new FormData(this);
-		var url = $(this).attr('action')
+		var url = $(this).attr('action');
 		$.ajax({
 			url: url,
 			type: "POST",
@@ -44,4 +44,26 @@ $(function() {
 		　　alert("errorr");
 		})
 	});
+
+	$(function(){
+		setInterval(update, 5000);
+	});
+	function update(){
+		var id = $(".message").last().data("message-id");
+		$.ajax({
+			type: "GET",
+			url: location.href,
+			data: {id: id},
+			dataType: "json"
+		})
+		.done(function(data){
+			data.forEach(function(message) {
+			 	var html = buildHTML(data);
+				clearBox(html);
+			})
+		})
+		.fail(function(){
+			alert("error");
+		})
+	}
 });
