@@ -1,22 +1,28 @@
-= render "shared/side_ber"
-.chat
-  .header
-    .left-header
-      .left-header__title
+= render partial: "chatside"
+
+.chat-main
+  .chat-main__header
+    .chat-main__header-group.clearfix
+      .chat-main__header-group-name
         = @group.name
-      .left-header__members
-        - @group_user.each do |user|
-          = p user
-    .right-header
-      .right-header__button
-        = link_to "Edit",edit_group_path(@group)
-  .messages
-    = render @messages
-  .form
-    = form_for [@group, @message], remote:true do |f|
-      = f.text_field :content, class: "form__message", placeholder: "type a message",id:"form" 
-      .form__mask
-        = f.label :image, class: "form__mask__image" do
-          = fa_icon "picture-o", class: "icon"
-          = f.file_field :image, class: "hidden"
-      = f.submit "Send", class: "form__submit"
+
+      %a.chat-main__header-group-btn
+        Edit
+
+    .chat-main__header-member
+      = @group.users.name
+
+
+
+  .chat-main__body
+    = render partial: "chatmain", collection: @messages, as: :message
+
+
+  .chat-main__footer
+    .chat-main__footer-form
+      = form_for [@group, @message], html:{id: 'new-message'} do |f|
+        = f.text_field :content, class: 'chat-main__footer-text', placeholder: 'type a message'
+        = f.label :image, class: 'chat-main__footer-label', for: "upload-icon" do
+          = f.file_field :image, class: 'chat-main__footer-faile', id: 'upload-icon'
+          = fa_icon 'image'
+        = f.submit 'Send', "data-disable-with": "送信中...", class: 'chat-main__footer-btn'

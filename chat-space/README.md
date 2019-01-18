@@ -1,52 +1,48 @@
-## userテーブル
+## members table
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|nul: false,unique: ture|
-|email|string|nul: false,unique: ture|
+|user_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false,foreign_key: true|
 
-### association
-- has_many :group, through: :members
+## Association
+- belongs_to :group
+- belongs_to :user
+
+## users table
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|index:true, null:false, unique:true|
+|mail|string|null:false|
+
+## Association
+- has_many :groups, through: members
+- has_many :messages
+- has_many :members
+
+## groups table
+
+|Column|Type|Option|
+|------|----|------|
+|name|string|index:true, null:false, unique:true|
+
+## Association
+- has_many :users, through: members
 - has_many :members
 - has_many :messages
 
+## messeges table
 
+|Colum|Type|Option|
+|-----|----|------|
+|body|text|
+|image|string|
+|group_id|integer|index:true, null:false|
+|user_id|integr|index:true, null:false|
 
-## groupテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|nul: false|
-
-### association
-- has_many :users, through: :members
-- has_many :members
-- has_many :messages
-
-
-
-## membersテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|user|references|null: false, foreign_key: true|
-|group|references|null: false, foreign_key: true|
-
-### Association
+## Assocoation
 - belongs_to :user
 - belongs_to :group
 
 
-
-## messagesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|text|string|nul: false|
-|image|string||
-|user|references|unl: false, forgin_key|
-|group|references|nul: false, forgin_key|
-
-### Association
-- belongs_to :user
-- belongs_to :group

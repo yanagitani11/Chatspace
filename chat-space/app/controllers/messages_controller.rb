@@ -4,33 +4,36 @@ class MessagesController < ApplicationController
   def index
     @message = Message.new
     @messages = @group.messages.includes(:user)
-    @group_user = set_users.map(&:name)
+    respond_to do |format|
+      format.html
+      format.json {@new_messages = @messages.where('id > ?', params[:id])}
+    end
   end
 
   def create
     @message = @group.messages.new(message_params)
     if @message.save
       respond_to do |format|
-        format.html
+        format.html { redirect_to group_messages_path(@group), notice:  'メッセージが送信されました'}
         format.json
       end
     else
-      render [:index]
+      @messages = @group.messages.includes(:user)
+      flash.now[:alert] = 'メッセージを入力してください'
+      render :index
     end
   end
 
   private
 
   def message_params
-    params.require(:message).permit(:content, :image).merge(user_id: current_user)
+    params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
   end
 
   def set_group
     @group = Group.find(params[:group_id])
-  end
 
-  def set_users
-    @group_users = @group.users
   end
-
 end
+
+
