@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
-set :application, "Chat-space"
+set :application, "Chatspace"
 set :repo_url, "git@github.com:yanagitani11/Chatspace.git"
 
 # Default branch is :master
