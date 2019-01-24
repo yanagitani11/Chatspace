@@ -31,6 +31,7 @@ $(function(){
 
   $('#user-search-field').on('keyup', function(){
     var input = $('#user-search-field').val();
+    console.log(this)
 
     $.ajax({
       type: 'GET',
@@ -43,6 +44,7 @@ $(function(){
       $('#user-search-result').empty();
       if (user.length !== 0) {
         user.forEach(function(user){
+          console.log(this)
           appendUser(user);
         });
       }
