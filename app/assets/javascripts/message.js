@@ -72,12 +72,7 @@ $(function(){
         data.forEach(function(message) {
           $('.messages').append(buildHTML(message));
         });
-
       })
-      .fail(function(data) {
-        alert('自動更新に失敗しました');
-      })
-      console.log();
     } else {
       clearInterval(interval);
     }
