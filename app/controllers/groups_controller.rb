@@ -8,6 +8,7 @@
   def new
     @group = Group.new
     @group.users << current_user
+    @members = @group.users
   end
 
   def create
@@ -21,7 +22,6 @@
   end
 
   def edit
-    @group = Group.find_by(params[:id])
     @members = @group.users
   end
 
@@ -39,6 +39,7 @@
   end
 
   def set_group
-    @group = Group.find_by(params[:id])
+    @group = Group.find(params[:id])
+    @members = @group.users
   end
 end

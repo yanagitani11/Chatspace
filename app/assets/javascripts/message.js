@@ -27,7 +27,7 @@ $(function(){
                   </div>
                 </div>`
     return html;
-  }
+  };
 
   $('#new_message').on('submit', function(e){
     e.preventDefault();
@@ -54,27 +54,33 @@ $(function(){
     .fail(function(){
       alert('error');
     })
-  })
+  });
 
   var interval = setInterval(function() {
 
     var last_message = $('.message').last().data('message-id');
+    console.log(last_message)
 
     if (window.location.href.match(/\/groups\/\d+\/messages/)) {
+      var last_message = $('.message:last').data('message-id');
       $.ajax({
         url: location.href,
         type: "GET",
-        data: { id: last_message },
+        data: { 
+          message:{ id:last_message }
+        },
         dataType: 'json'
       })
       .done(function(data) {
         console.log(data)
         data.forEach(function(message) {
           $('.messages').append(buildHTML(message));
+          $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
         });
       })
-    } else {
-      clearInterval(interval);
-    }
+      .fail(function() {
+        interval
+      })
+    };
   } , 5000 );
 });
