@@ -29,7 +29,7 @@ $(function(){
     member_list.append(add_user);
   }
 
-  $('#user-search-field').on('keyup', function(){
+  $('.chat-group-form__field--right').on('keyup', function(){
     var input = $('#user-search-field').val();
     console.log(this)
 
