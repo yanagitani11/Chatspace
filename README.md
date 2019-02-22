@@ -1,44 +1,52 @@
-## usersテーブル
+## userテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
-|email|string|null: false|
+|name|string|nul: false,unique: ture|
+|email|string|nul: false,unique: ture|
 
-### Association
-- has_many :messages
+### association
+- has_many :group, through: :members
 - has_many :members
+- has_many :messages
 
-## messagesテーブル
+
+
+## groupテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|references|null: false, foreign_key: true|
-|group_id|references|null: false, foreign_key: true|
-|body|string||
-|image|string||
+|name|string|nul: false|
 
-### Association
-- belongs_to :group
-- belongs_to :user
+### association
+- has_many :users, through: :members
+- has_many :members
+- has_many :messages
+
+
 
 ## membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|references|null: false, foreign_key: true|
-|group_id|references|null: false, foreign_key: true|
+|user|references|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :group
 - belongs_to :user
+- belongs_to :group
 
-## groupsテーブル
+
+
+## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|title|string|null: false|
+|text|string|nul: false|
+|image|string||
+|user|references|unl: false, forgin_key|
+|group|references|nul: false, forgin_key|
 
 ### Association
-- has_many :messsages
-- has_many :members
+- belongs_to :user
+- belongs_to :group
