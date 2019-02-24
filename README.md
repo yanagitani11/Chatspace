@@ -1,52 +1,44 @@
-## userテーブル
+## usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|nul: false,unique: ture|
-|email|string|nul: false,unique: ture|
-
-### association
-- has_many :group, through: :members
-- has_many :members
-- has_many :messages
-
-
-
-## groupテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|nul: false|
-
-### association
-- has_many :users, through: :members
-- has_many :members
-- has_many :messages
-
-
-
-## membersテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|user|references|null: false, foreign_key: true|
-|group|references|null: false, foreign_key: true|
+|name|string|null: false|
+|email|string|null: false|
 
 ### Association
-- belongs_to :user
-- belongs_to :group
-
-
+- has_many :messages
+- has_many :members
 
 ## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|text|string|nul: false|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
+|body|string||
 |image|string||
-|user|references|unl: false, forgin_key|
-|group|references|nul: false, forgin_key|
 
 ### Association
-- belongs_to :user
 - belongs_to :group
+- belongs_to :user
+
+## membersテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
+
+### Association
+- belongs_to :group
+- belongs_to :user
+
+## groupsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|title|string|null: false|
+
+### Association
+- has_many :messsages
+- has_many :members
