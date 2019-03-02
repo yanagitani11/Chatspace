@@ -83,6 +83,10 @@
       border: 0;
       margin: 0 44%;
     }
+    .chat-group-form__field--result {
+      width: 70%;
+      float: right;
+    }
   }
 
   .chat-group-user {
@@ -101,7 +105,6 @@
     }
 
     .chat-group-user__btn {
-      float: right;
       cursor: pointer;
       margin-left: auto;
       &.chat-group-user__btn--add {

@@ -23,8 +23,9 @@
       .chat-group-user
         %input{:name => "chat_group[user_ids][]", :type => "hidden", :value => current_user.id}/
         .chat-group-user__name
-          = current_user.name
-    .chat-group-form__field--right
+          - @group.users.each do |users| 
+            = users.name
+    .chat-group-form__field--result
   .chat-group-form__field.clearfix
     = f.submit class: 'chat-group-form__field--action-btn'
       
