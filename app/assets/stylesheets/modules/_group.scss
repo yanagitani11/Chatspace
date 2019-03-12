@@ -102,6 +102,15 @@
     }
 
     .chat-group-user__name {
+      display: flex;
+      &_a{
+        &-part {
+          margin: 0 5px;
+        }
+        &-id {
+          display: none;
+        }
+      }
     }
 
     .chat-group-user__btn {

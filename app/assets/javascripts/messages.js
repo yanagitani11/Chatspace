@@ -31,7 +31,7 @@ $(function() {
   	function update(){
   		var message_id = $('.message').last().data("message-id");
   		$.ajax({
-  		  	url: location.href,
+  		  url: location.href,
   			type: "GET",
   			data: {
   			  message: {id: message_id}

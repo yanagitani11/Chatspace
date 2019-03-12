@@ -1,6 +1,7 @@
 $(function() {
 	var Adduser_list = $("#user-search-result");
 	var users_list = $(".chat-group-form__field--result")
+  window.onload = firstscript;
 
     function appendUser(user){
       var html =  `<div class="chat-group-user clearfix">
@@ -35,6 +36,17 @@ $(function() {
     $(document).on('click', '.user-search-remove', function() {
       $(this).parent().remove();
     })
+    function firstscript(){
+      var user = document.getElementsByClassName('chat-group-user__name_a-part');
+      console.log(user);
+      for (var i = 0; user.length; i++){
+        var member = user[i].outerText;
+        console.log(member);
+        var id = user[i].id;
+        console.log(id);
+        appendAddUser(id, member);
+      }
+    }
 
 	$("#user-search-field").on("keyup",function() {
 		var input = $(this).val();
@@ -44,6 +56,7 @@ $(function() {
 			data: { keyword: input},
 			dataType: 'json'
 		})
+
       .done(function(users){
         $("#user-search-result").empty();
         if (users.length !== 0) {

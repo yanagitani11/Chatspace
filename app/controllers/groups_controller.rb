@@ -22,7 +22,6 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group.users << current_user
     if @group.update(group_params)
       redirect_to group_messages_path(@group), notice: 'グループを編集しました'
     else
@@ -38,6 +37,6 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:id])
-    @group_users = @group.users.name
+    @group_user = @group.users.reject {|user| user == "%#{current_user}"}
   end
 end
