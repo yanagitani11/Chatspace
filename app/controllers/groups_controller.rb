@@ -23,6 +23,9 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
+      unless @group.users.find { |n| n == current_user }
+        @group.users << current_user
+      end
       redirect_to group_messages_path(@group), notice: 'グループを編集しました'
     else
       render :edit

@@ -16,11 +16,14 @@ $(function() {
                     ${image}
                   </div>
                 </div>`
+  var image = "";
 	return html;
+  
 	}
 	  function clearBox(html){
     	$('.messages').append(html)
     	$('.form__message').val('')
+      $('#message_image').val('')
     	$('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
   	}
 
